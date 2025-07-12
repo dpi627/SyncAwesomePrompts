@@ -1,0 +1,63 @@
+name: Sync Awesome GitHub Copilot Customizations
+
+on:
+  # Run daily at midnight UTC
+  schedule:
+    - cron: '0 0 * * *'
+  
+  # Allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout this repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Checkout awesome-copilot repository
+      uses: actions/checkout@v4
+      with:
+        repository: github/awesome-copilot
+        path: awesome-copilot
+        
+    - name: Sync folders
+      run: |
+        # Create directories if they don't exist
+        mkdir -p chatmodes instructions prompts
+        
+        # Remove existing content to ensure clean sync
+        rm -rf chatmodes/* instructions/* prompts/* 2>/dev/null || true
+        
+        # Copy folders from awesome-copilot
+        cp -r awesome-copilot/chatmodes/* chatmodes/ 2>/dev/null || true
+        cp -r awesome-copilot/instructions/* instructions/ 2>/dev/null || true
+        cp -r awesome-copilot/prompts/* prompts/ 2>/dev/null || true
+        
+        # Clean up the temporary checkout
+        rm -rf awesome-copilot
+        
+    - name: Check for changes
+      id: changes
+      run: |
+        git add -A
+        if git diff --staged --quiet; then
+          echo "has_changes=false" >> $GITHUB_OUTPUT
+        else
+          echo "has_changes=true" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Commit and push changes
+      if: steps.changes.outputs.has_changes == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Sync from github/awesome-copilot $(date +'%Y-%m-%d %H:%M:%S UTC')"
+        git push
+        
+    - name: No changes to commit
+      if: steps.changes.outputs.has_changes == 'false'
+      run: echo "No changes detected, skipping commit"
