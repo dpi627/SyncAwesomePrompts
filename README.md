@@ -1,5 +1,9 @@
 # 🤖 出色的 GitHub Copilot 客製化設定
 
+> **📢 重要說明**  
+> **原始資料來源：** [github/awesome-copilot](https://github.com/github/awesome-copilot)  
+> **本儲存庫說明：** 此儲存庫為 **Copilot Coding Agent 開發轉移程序**專用，提供繁體中文版本的 GitHub Copilot 客製化資源。
+
 透過社群貢獻的指令、提示和配置，增強您的 GitHub Copilot 體驗。獲得符合您團隊編碼標準和專案需求的一致 AI 協助。
 
 ## 🎯 GitHub Copilot 客製化功能
@@ -72,17 +76,17 @@ GitHub Copilot 提供三種主要方式來客製化 AI 回應，並針對您的�
 - **instructions/** - 各種框架和技術的指令檔案  
 - **prompts/** - 可重複使用的提示範本
 
-## 🤖 自動化
+## 🤖 自動化與同步
 
-此儲存庫使用 GitHub Actions 每天自動同步內容。工作流程：
+此儲存庫為 **Copilot Coding Agent 開發轉移程序**，使用 GitHub Actions 每天自動同步來源儲存庫的內容。工作流程：
 
 1. 每日於 UTC 午夜執行
 2. 也可透過工作流程調度手動觸發
-3. 從來源儲存庫獲取最新內容
+3. 從來源儲存庫 [github/awesome-copilot](https://github.com/github/awesome-copilot) 獲取最新內容
 4. 使用新內容更新三個資料夾
 5. 僅在有更新時提交和推送更改
 
-來源：https://github.com/github/awesome-copilot
+**原始資料來源：** https://github.com/github/awesome-copilot
 
 ## 📚 其他資源
 
@@ -104,13 +108,15 @@ GitHub Copilot 提供三種主要方式來客製化 AI 回應，並針對您的�
 
 ## 📄 變更記錄
 
-### 2024-12-19 - README 翻譯與增強
-- 將 README.md 翻譯為繁體中文（zh-TW）
-- 新增 VS Code 和 VS Code Insiders 安裝按鈕與指令
-- 適配安裝 URL 指向當前儲存庫（dpi627/SyncAwesomePrompts）
-- 新增各類別檔案的詳細表格（指令、提示、聊天模式）
-- 新增變更記錄區塊記錄修改歷史
-- 包含開發配置說明
+### 2024-12-19 - 建立 Copilot Coding Agent 開發轉移程序
+- **建立轉移程序：** 本儲存庫專為 Copilot Coding Agent 開發轉移程序而建立
+- **原始資料來源：** 從 [github/awesome-copilot](https://github.com/github/awesome-copilot) 同步內容
+- **繁體中文化：** 將 README.md 完整翻譯為繁體中文（zh-TW）
+- **本地化安裝按鈕：** 新增 VS Code 和 VS Code Insiders 安裝按鈕與指令
+- **適配安裝 URL：** 調整安裝 URL 指向當前儲存庫（dpi627/SyncAwesomePrompts）
+- **完整內容移植：** 新增各類別檔案的詳細表格（指令、提示、聊天模式）
+- **新增變更記錄：** 建立變更記錄區塊記錄修改歷史
+- **開發配置說明：** 包含開發配置相關文件
 
 ### 先前修改
 - 設定 GitHub Actions 自動同步機制
