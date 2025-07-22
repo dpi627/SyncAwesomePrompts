@@ -8,6 +8,10 @@ on:
   # Allow manual triggering
   workflow_dispatch:
 
+permissions:
+  contents: write
+  metadata: read
+
 jobs:
   sync:
     runs-on: ubuntu-latest
